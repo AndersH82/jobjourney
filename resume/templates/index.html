@@ -1,20 +1,14 @@
+{% extends "base_generic.html" %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-</head>
-<body>
+{% block title %}Home{% endblock %}
+
+{% block content %}
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-8 col-sm-12 text-center">
                 <div class="profile-container mx-auto">
-                    <img src="{% static 'images/profile-picture.jpg' %}" alt="Profile Picture" class="img-fluid rounded-circle mb-3">
+                    <img src="{% static 'images/default.png' %}" alt="Profile Picture" class="img-fluid rounded-circle mb-3">
                     <h1>John Doe</h1>
                     <p>Address: 123 Main St, Anytown</p>
                     <p>Country: USA</p>
@@ -26,7 +20,7 @@
                             <button type="button" class="btn btn-primary flex-fill m-1">Work Experience</button>
                             <button type="button" class="btn btn-primary flex-fill m-1">Educations</button>
                             <button type="button" class="btn btn-primary flex-fill m-1">Skills</button>
-                            <button type="button" class="btn btn-primary flex-fill m-1">Edit Profile</button>
+                            <a href="{% url 'profile' %}" class="btn btn-primary flex-fill m-1">Edit Profile</a>
                             <button type="button" class="btn btn-primary flex-fill m-1">Resume</button>
                         </div>
                     </div>
@@ -34,8 +28,4 @@
             </div>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
+{% endblock %}

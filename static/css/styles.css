@@ -2,33 +2,45 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: blue;
+}
+
+.main-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: blue;
 }
+
+/* profile */
+
 .profile-container {
+    margin-top: 70px;
     background-color: #fff;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
+
 .profile-container img {
     border-radius: 50%;
     width: 150px;
     height: 150px;
 }
+
 .profile-container h1 {
     margin: 10px 0;
 }
+
 .profile-container p {
     margin: 5px 0;
 }
+
 .buttons-container {
     margin-top: 20px;
 }
+
 .buttons-container button {
     margin: 5px;
     padding: 10px 20px;
@@ -38,6 +50,18 @@ body {
     color: #fff;
     cursor: pointer;
 }
+
 .buttons-container button:hover {
     background-color: #0056b3;
+}
+
+/* login */
+
+.login-container {
+    margin-top: 70px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
