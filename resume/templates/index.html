@@ -8,12 +8,19 @@
         <div class="row justify-content-center">
             <div class="col-md-8 col-sm-12 text-center">
                 <div class="profile-container mx-auto">
-                    <img src="{% static 'images/default.png' %}" alt="Profile Picture" class="img-fluid rounded-circle mb-3">
-                    <h1>John Doe</h1>
-                    <p>Address: 123 Main St, Anytown</p>
-                    <p>Country: USA</p>
-                    <p>Phone: (123) 456-7890</p>
-                    <p>Email: john.doe@example.com</p>
+                {% if user.is_authenticated %}      
+                    <h2>Welcome, {{ user.username }}!</h2>
+                    <img src="{{ profile.image.url|default:'static/images/default.png' }}" alt="Profile Image">
+                    <p>Name: {{ profile.name }}</p>
+                    <p>Last name: {{ profile.last_name }}</p>
+                    <p>Email: {{ profile.email }}</p>
+                    <p>Phone: {{ profile.phone }}</p>
+                    <p>Address: {{ profile.address }}</p>
+                    <p>Country: {{ profile.country }}</p>
+                {% else %}
+                    <h2>Welcome to JobJourney!</h2>
+                    <p>Please <a href="{% url 'login' %}">login</a> or <a href="{% url 'signup' %}">sign up</a>.</p>
+                {% endif %}
                     <div class="buttons-container mt-4">
                         <div class="btn-group d-flex flex-wrap" role="group" aria-label="Profile Actions">
                             <button type="button" class="btn btn-primary flex-fill m-1">Profile</button>

@@ -1,0 +1,40 @@
+{% extends "base_generic.html" %}
+{% load static %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+<style>
+    .center-text {
+        text-align: center;
+    }
+    .center-text::placeholder {
+        text-align: center;
+    }
+</style>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-sm-12 text-center">
+            <div class="signup-container mx-auto">
+                <h1><strong>Sign Up</strong></h1>
+                <form method="POST" class="container mt-5" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="text" id="id_username" name="username" placeholder="Enter your username" class="center-text">
+                    <input type="text" id="id_first_name" name="first_name" placeholder="Enter your name" class="center-text">
+                    <input type="text" id="id_last_name" name="last_name" placeholder="Enter your last name" class="center-text">
+                    <input type="text" id="id_email" name="email" placeholder="Enter your email" class="center-text">
+                    <input type="text" id="id_phone" name="phone" placeholder="Enter your phone number" class="center-text">
+                    <input type="text" id="id_country" name="country" placeholder="Enter your country" class="center-text">
+                    <input type="text" id="id_address" name="address" placeholder="Enter your address" class="center-text">
+                    <input type="file" id="id_image" name="image">
+                    <label for="id_image" id="id_image_label">Upload Image</label>
+                    <input type="password" id="id_password1" name="password1" placeholder="Enter password" class="center-text">
+                    <input type="password" id="id_password2" name="password2" placeholder="Confirm password" class="center-text">
+                    <button type="submit" class="btn">Sign Up</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

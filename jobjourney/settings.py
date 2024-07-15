@@ -21,6 +21,8 @@ LOGIN_REDIRECT_URL = 'profile'  # Redirect to profile page after login
 LOGOUT_REDIRECT_URL = 'login'   # Redirect to index page after logout
 # Application definition
 
+CSRF_FAILURE_VIEW = 'django.views.csrf.csrf_failure'
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
