@@ -6,12 +6,23 @@ from .models import Profile
 class UserUpdateForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ['username', 'email']
+        fields = ['username', 'first_name', 'last_name', 'email']
+        widgets = {
+            'username': forms.TextInput(attrs={'placeholder': 'Enter your username', 'class': 'text-center'}),
+            'first_name': forms.TextInput(attrs={'placeholder': 'Enter your first name', 'class': 'text-center'}),
+            'last_name': forms.TextInput(attrs={'placeholder': 'Enter your last name', 'class': 'text-center'}),
+            'email': forms.EmailInput(attrs={'placeholder': 'Enter your email', 'class': 'text-center'}),
+        }
 
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['image', 'surname', 'address', 'country', 'phone']
+        fields = ['image', 'address', 'country', 'phone']
+        widgets = {
+            'address': forms.TextInput(attrs={'placeholder': 'Enter your address', 'class': 'text-center'}),
+            'country': forms.TextInput(attrs={'placeholder': 'Enter your country', 'class': 'text-center'}),
+            'phone': forms.TextInput(attrs={'placeholder': 'Enter your phone number', 'class': 'text-center'}),
+        }
 
 
 class UserRegisterForm(UserCreationForm):

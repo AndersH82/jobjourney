@@ -11,24 +11,36 @@
                 {% if user.is_authenticated %}      
                     <h2>Welcome, {{ user.username }}!</h2>
                     <img src="{{ profile.image.url|default:'static/images/default.png' }}" alt="Profile Image">
-                    <p>Name: {{ profile.name }}</p>
-                    <p>Last name: {{ profile.last_name }}</p>
-                    <p>Email: {{ profile.email }}</p>
-                    <p>Phone: {{ profile.phone }}</p>
-                    <p>Address: {{ profile.address }}</p>
-                    <p>Country: {{ profile.country }}</p>
+                    <p>{{ user.first_name }}</p>
+                    <p>{{ user.last_name }}</p>
+                    <p>{{ user.email }}</p>
+                    <p>{{ profile.phone }}</p>
+                    <p>{{ profile.address }}</p>
+                    <p>{{ profile.country }}</p>
                 {% else %}
                     <h2>Welcome to JobJourney!</h2>
                     <p>Please <a href="{% url 'login' %}">login</a> or <a href="{% url 'signup' %}">sign up</a>.</p>
                 {% endif %}
                     <div class="buttons-container mt-4">
                         <div class="btn-group d-flex flex-wrap" role="group" aria-label="Profile Actions">
-                            <button type="button" class="btn btn-primary flex-fill m-1">Profile</button>
-                            <button type="button" class="btn btn-primary flex-fill m-1">Work Experience</button>
-                            <button type="button" class="btn btn-primary flex-fill m-1">Educations</button>
-                            <button type="button" class="btn btn-primary flex-fill m-1">Skills</button>
-                            <a href="{% url 'profile' %}" class="btn btn-primary flex-fill m-1">Edit Profile</a>
-                            <button type="button" class="btn btn-primary flex-fill m-1">Resume</button>
+                            <div class="button-box flex-fill m-1 col-12 col-sm-6 col-md-4">
+                                <button type="button" class="btn">Profile</button>
+                            </div>
+                            <div class="button-box flex-fill m-1 col-12 col-sm-6 col-md-4">
+                                <button type="button" class="btn">Work Experience</button>
+                            </div>
+                            <div class="button-box flex-fill m-1 col-12 col-sm-6 col-md-4">
+                                <button type="button" class="btn">Educations</button>
+                            </div>
+                            <div class="button-box flex-fill m-1 col-12 col-sm-6 col-md-4">
+                                <button type="button" class="btn">Skills</button>
+                            </div>
+                            <div class="button-box flex-fill m-1 col-12 col-sm-6 col-md-4">
+                                <button type="button" class="btn">Resume</button>
+                            </div>
+                            <div class="button-box flex-fill m-1 col-12 col-sm-6 col-md-4">
+                                <a href="{% url 'profile' %}" class="btn">Edit Profile</a>
+                            </div>
                         </div>
                     </div>
                 </div>
