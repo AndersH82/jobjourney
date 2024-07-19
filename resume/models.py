@@ -24,3 +24,38 @@ def create_user_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
+
+
+class Education(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    school = models.CharField(max_length=255)
+    degree = models.CharField(max_length=255)
+    start_date = models.DateField()
+    end_date = models.DateField()
+
+    def __str__(self):
+        return f"{self.school} - {self.degree}"
+    
+
+class WorkExperience(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    company = models.CharField(max_length=255)
+    job_title = models.CharField(max_length=255)
+    start_date = models.DateField()
+    end_date = models.DateField()
+    responsibilities = models.TextField(default='')
+    achievements = models.TextField(default='')
+    skills_used = models.TextField(default='')
+
+    def __str__(self):
+        return f"{self.job_title} at {self.company}"
+    
+
+
+class Skill(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    skill_name = models.CharField(max_length=100)
+    proficiency = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f"{self.skill_name} ({self.proficiency})"

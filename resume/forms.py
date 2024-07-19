@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import Profile
+from .models import Profile, Education, WorkExperience, Skill
 
 class UserUpdateForm(forms.ModelForm):
     class Meta:
@@ -53,3 +53,25 @@ class UserRegisterForm(UserCreationForm):
                 image=self.cleaned_data['image'] if 'image' in self.cleaned_data else 'default.jpg'
             )
         return user
+    
+
+class EducationForm(forms.ModelForm):
+    class Meta:
+        model = Education
+        fields = ['school', 'degree', 'start_date', 'end_date']
+
+
+class WorkExperienceForm(forms.ModelForm):
+    class Meta:
+        model = WorkExperience
+        fields = ['job_title', 'company', 'start_date', 'end_date', 'responsibilities', 'achievements', 'skills_used']
+        widgets = {
+            'start_date': forms.DateInput(attrs={'type': 'date'}),
+            'end_date': forms.DateInput(attrs={'type': 'date'}),
+        }
+
+
+class SkillForm(forms.ModelForm):
+    class Meta:
+        model = Skill
+        fields = ['skill_name', 'proficiency']

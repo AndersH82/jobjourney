@@ -6,14 +6,15 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    padding-bottom: 80px;
 }
 
 .main-container {
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    padding-bottom: 80px; /* Adjust this value to match the footer height */
+    padding-bottom: 80px;
 }
 
 /* profile */
@@ -22,9 +23,10 @@ body {
     margin-top: 70px;
     background-color: #fff;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     text-align: center;
+    margin-bottom: 60px;
 }
 
 .profile-container img {
@@ -69,7 +71,7 @@ body {
 .button-box button.btn {
     color: white;
     background-color: #022E51;
-    border-radius: 5px;
+    border-radius: 20px;
     margin: 5px;
 }
 
@@ -78,10 +80,9 @@ body {
 }
 
 .button-box a.btn {
-    width: 80%;
     color: white;
-    background-color: #B74803;
-    border-radius: 5px;
+    background-color: #022E51;
+    border-radius: 20px;
     margin: 5px;
 }
 
@@ -96,7 +97,7 @@ body {
     background-color: white;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     text-align: center;
 }
 
@@ -139,6 +140,21 @@ body {
 .navbar-text {
     color: white;
     font-size: xx-large;
+    margin: 0 auto;
+    position: absolute;
+    left: 50%;
+    top: 10%;
+    transform: translateX(-50%);
+}
+
+.fa-solid {
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.nav-link {
+    margin-right: 15px; /* Add space between nav links */
 }
 
 /* footer */
@@ -156,6 +172,13 @@ footer {
     align-items: center;
 }
 
+.btn-logout {
+    color: white;
+    background-color: #B74803;
+    border-radius: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
 /* signup */
 
 .signup-container {
@@ -163,7 +186,7 @@ footer {
     background-color: white;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     text-align: center;
     padding-bottom: 100px;
     display: flex;
@@ -244,7 +267,6 @@ ul {
     text-align: center;
 }
 
-
 /* logout */
 
 .logout-button {
@@ -278,7 +300,7 @@ ul {
     background-color: white;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     text-align: center;
     padding-bottom: 100px;
     display: flex;
@@ -315,4 +337,98 @@ ul {
     width: 60%;
     border-radius: 20px;
     margin-top: 20px;
+}
+
+/* delete education */
+
+.page-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+}
+
+.delete-container {
+    width: 50%;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btn-delete1 {
+    width: 100px;
+    color: white;
+    background-color: #B74803;
+    border-radius: 20px;
+    padding: 10px;
+    border: none;
+    margin: 5px;
+}
+
+.btn-delete1:hover {
+    background-color: #cc6d3d;
+}
+
+.btn-delete {
+    width: 100px;
+    color: white;
+    background-color: #022E51;
+    border-radius: 20px;
+    padding: 10px;
+    border: none;
+    margin: 5px;
+}
+
+.btn-delete:hover {
+    background-color: #0056b3;
+}
+
+.confirm-delete-container {
+    margin-top: 80px;
+}
+
+/* resume page 1 */
+
+.resume-container {
+    margin-top: 120px;
+    width: 50%;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media (max-width: 990px) {
+    .resume-container {
+        margin-bottom: 60px;
+    }
+}
+
+.btn-resume {
+    color: white;
+    background-color: #B74803;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+}
+
+.btn-resume:hover {
+    background-color: #cc6d3d;
+}
+
+.extra-margin {
+    margin-left: 140px; /* Adjust this value as needed */
+}
+
+.extra-margin2 {
+    margin-left: 60px; /* Adjust this value as needed */
 }

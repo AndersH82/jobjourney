@@ -1,0 +1,66 @@
+{% extends "base_generic.html" %}
+{% load static %}
+
+{% block title %}Skills{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h2 class="card-title text-center">Add Your Skills</h2>
+                    <form id="skill-form" method="POST" action="{% url 'save_skill' %}">
+                        {% csrf_token %}
+                        <div id="skill-list">
+                            <div class="skill-entry mb-3">
+                                <label for="skill_name">Skill Name:</label>
+                                <input type="text" class="form-control" name="skill_name" required>
+                                <label for="proficiency">Proficiency:</label>
+                                <input type="text" class="form-control" name="proficiency" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-success mt-3">Save</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title text-center">Saved Skills</h3>
+                    <div id="saved-skill-list">
+                        {% for skill in skill_entries %}
+                            <div class="saved-skill-entry mb-3">
+                                <p><strong>Skill Name:</strong> {{ skill.skill_name }}</p>
+                                <p><strong>Proficiency:</strong> {{ skill.proficiency }}</p>
+                                <a href="{% url 'edit_skill' skill.id %}" class="btn btn-warning">Edit</a>
+                                <a href="{% url 'delete_skill' skill.id %}" class="btn btn-danger">Delete</a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $('#add-skill').click(function() {
+            $('#skill-list').append(`
+                <div class="skill-entry mb-3">
+                    <label for="skill_name">Skill Name:</label>
+                    <input type="text" class="form-control" name="skill_name[]" required>
+                    <label for="proficiency">Proficiency:</label>
+                    <input type="text" class="form-control" name="proficiency[]" required>
+                    <button type="button" class="btn btn-danger mt-2 remove-skill">Remove</button>
+                </div>
+            `);
+        });
+
+        $(document).on('click', '.remove-skill', function() {
+            $(this).closest('.skill-entry').remove();
+        });
+    });
+</script>
+{% endblock %}

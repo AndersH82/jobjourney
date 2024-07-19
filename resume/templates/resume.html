@@ -1,0 +1,63 @@
+{% extends "base_generic.html" %}
+{% load static %}
+
+{% block title %}Resume{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/print.css' %}" media="print">
+
+<div class="container resume-container">
+    <div class="container">
+        <div class="text-center">
+        </div>
+        <div class="profile-header d-flex align-items-center mb-4">
+            <img src="{{ profile.image.url|default:'static/images/default.png' }}" alt="Profile Image" class="rounded-circle img-fluid extra-margin2" style="width: 150px; height: 150px;">
+            <div class="profile-details ml-5 extra-margin">
+                <h1>{{ user.first_name }} {{ user.last_name }}</h1>
+                <p>{{ user.email }}</p>
+                <p>{{ profile.phone }}</p>
+                <p>{{ profile.address }}</p>
+                <p>{{ profile.country }}</p>
+            </div>
+        </div>
+        <br>
+        <div>
+            <h2>Education</h2>
+            {% for education in education_entries %}
+                <div class="education-entry mb-3">
+                    <p><strong>School:</strong> {{ education.school }}</p>
+                    <p><strong>Degree:</strong> {{ education.degree }}</p>
+                    <p><strong>Start Date:</strong> {{ education.start_date }}</p>
+                    <p><strong>End Date:</strong> {{ education.end_date }}</p>
+                </div>
+            {% endfor %}
+        </div>
+        <br>
+        <div>
+            <h2>Work Experience</h2>
+            {% for work in work_experience_entries %}
+                <div class="work-entry mb-3">
+                    <p><strong>Company:</strong> {{ work.company }}</p>
+                    <p><strong>Position:</strong> {{ work.position }}</p>
+                    <p><strong>Start Date:</strong> {{ work.start_date }}</p>
+                    <p><strong>End Date:</strong> {{ work.end_date }}</p>
+                    <p><strong>Achievements:</strong> {{ work.achievements }}</p>
+                </div>
+            {% endfor %}
+        </div>
+        <br>
+        <div>
+            <h2>Skills</h2>
+            {% for skill in skills %}
+                <div class="skill-entry mb-3">
+                    <p><strong>Skill:</strong> {{ skill.name }}</p>
+                    <p><strong>Proficiency:</strong> {{ skill.proficiency }}</p>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-5">
+            <button onclick="window.print()" class="btn-resume">Print Resume</button>
+        </div>
+    </div>
+</div>
+{% endblock %}

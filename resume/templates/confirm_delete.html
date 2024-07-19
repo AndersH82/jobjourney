@@ -1,0 +1,24 @@
+{% extends "base_generic.html" %}
+
+{% block title %}Confirm Delete{% endblock %}
+
+{% block content %}
+  <div class="container mt-5 confirm-delete-container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <h2 class="card-title text-center">Are you sure you want to delete this education?</h2>
+            <form method="POST">
+              {% csrf_token %}
+              <div class="d-grid gap-2">
+                <button type="submit" class="btn-delete1">Yes, delete</button>
+                <button type="button" class="btn-delete" onclick="window.location.href='{% url 'education' %}'">Cancel</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

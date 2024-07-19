@@ -1,0 +1,93 @@
+{% extends "base_generic.html" %}
+{% load static %}
+
+{% block title %}Work Experience{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h2 class="card-title text-center">Add Your Work Experience</h2>
+                    <form id="work-experience-form" method="POST" action="{% url 'save_work_experience' %}">
+                        {% csrf_token %}
+                        <div id="work-experience-list">
+                            <div class="work-experience-entry mb-3">
+                                <label for="company">Company:</label>
+                                <input type="text" class="form-control" name="company[]" required>
+                                <label for="job_title">Job Title:</label>
+                                <input type="text" class="form-control" name="job_title[]" required>
+                                <label for="start_date">Start Date:</label>
+                                <input type="date" class="form-control" name="start_date[]" required>
+                                <label for="end_date">End Date:</label>
+                                <input type="date" class="form-control" name="end_date[]" required>
+                                <label for="responsibilities">Responsibilities:</label>
+                                <textarea class="form-control" name="responsibilities[]" rows="3"></textarea>
+                                <label for="achievements">Achievements:</label>
+                                <textarea class="form-control" name="achievements[]" rows="3"></textarea>
+                                <label for="skills_used">Skills Used:</label>
+                                <input type="text" class="form-control" name="skills_used[]" required>
+                            </div>
+                        </div>
+                        <button type="button" id="add-work-experience" class="btn btn-primary mt-3">Add More</button>
+                        <button type="submit" class="btn btn-success mt-3">Save</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title text-center">Saved Work Experience</h3>
+                    <div id="saved-work-experience-list">
+                        {% for experience in work_experience_entries %}
+                        {% csrf_token %}
+                            <div class="saved-work-experience-entry mb-3">
+                                <p><strong>Company:</strong> {{ experience.company }}</p>
+                                <p><strong>Job Title:</strong> {{ experience.job_title }}</p>
+                                <p><strong>Start Date:</strong> {{ experience.start_date }}</p>
+                                <p><strong>End Date:</strong> {{ experience.end_date }}</p>
+                                <p><strong>Responsibilities:</strong> {{ experience.responsibilities }}</p>
+                                <p><strong>Achievements:</strong> {{ experience.achievements }}</p>
+                                <p><strong>Skills Used:</strong> {{ experience.skills_used }}</p>
+                                <a href="{% url 'edit_work_experience' experience.id %}" class="btn btn-warning">Edit</a>
+                                <a href="{% url 'delete_work_experience' experience.id %}" class="btn btn-danger">Delete</a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $('#add-work-experience').click(function() {
+            $('#work-experience-list').append(`
+                <div class="work-experience-entry mb-3">
+                    <label for="company">Company:</label>
+                    <input type="text" class="form-control" name="company[]" required>
+                    <label for="job_title">Job Title:</label>
+                    <input type="text" class="form-control" name="job_title[]" required>
+                    <label for="start_date">Start Date:</label>
+                    <input type="date" class="form-control" name="start_date[]" required>
+                    <label for="end_date">End Date:</label>
+                    <input type="date" class="form-control" name="end_date[]" required>
+                    <label for="responsibilities">Responsibilities:</label>
+                    <textarea class="form-control" name="responsibilities[]" rows="3"></textarea>
+                    <label for="achievements">Achievements:</label>
+                    <textarea class="form-control" name="achievements[]" rows="3"></textarea>
+                    <label for="skills_used">Skills Used:</label>
+                    <input type="text" class="form-control" name="skills_used[]" required>
+                    <button type="button" class="btn btn-danger mt-2 remove-work-experience">Remove</button>
+                </div>
+            `);
+        });
+
+        $(document).on('click', '.remove-work-experience', function() {
+            $(this).closest('.work-experience-entry').remove();
+        });
+    });
+</script>
+{% endblock %}

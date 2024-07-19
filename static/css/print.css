@@ -1,0 +1,44 @@
+/* static/css/print.css */
+
+/* Set the size to A4 */
+@page {
+    size: A4;
+    margin: 0; /* Remove margins to make it full width */
+}
+
+/* Ensure the container fits within the page */
+.resume-container {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: none; /* Remove any borders */
+}
+
+/* Hide elements that should not be printed */
+@media print {
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+    body * {
+        visibility: hidden;
+    }
+    .resume-container, .resume-container * {
+        visibility: visible;
+    }
+    .resume-container {
+        position: relative;
+        width: 210mm; /* A4 width */
+        height: 297mm; /* A4 height */
+        margin: 0;
+        padding: 0;
+        box-shadow: none;
+        border: none; /* Remove any borders */
+    }
+    .btn-resume {
+        display: none;
+    }
+}

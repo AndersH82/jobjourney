@@ -1,0 +1,75 @@
+{% extends "base_generic.html" %}
+{% load static %}
+
+{% block title %}Education{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h2 class="card-title text-center">Add Your Education</h2>
+                    <form id="education-form" method="POST" action="{% url 'save_education' %}">
+                        {% csrf_token %}
+                        <div id="education-list">
+                            <div class="education-entry mb-3">
+                                <label for="school">School:</label>
+                                <input type="text" class="form-control" name="school[]" required>
+                                <label for="degree">Degree:</label>
+                                <input type="text" class="form-control" name="degree[]" required>
+                                <label for="start_date">Start Date:</label>
+                                <input type="date" class="form-control" name="start_date[]" required>
+                                <label for="end_date">End Date:</label>
+                                <input type="date" class="form-control" name="end_date[]" required>
+                                
+                        <button type="submit" class="btn btn-success mt-3">Save</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title text-center">Saved Education</h3>
+                    <div id="saved-education-list">
+                        {% for education in education_entries %}
+                            <div class="saved-education-entry mb-3">
+                                <p><strong>School:</strong> {{ education.school }}</p>
+                                <p><strong>Degree:</strong> {{ education.degree }}</p>
+                                <p><strong>Start Date:</strong> {{ education.start_date }}</p>
+                                <p><strong>End Date:</strong> {{ education.end_date }}</p>
+                                <a href="{% url 'edit_education' education.id %}" class="btn btn-warning">Edit</a>
+                                <a href="{% url 'delete_education' education.id %}" class="btn btn-danger">Delete</a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $('#add-education').click(function() {
+            $('#education-list').append(`
+                <div class="education-entry mb-3">
+                    <label for="school">School:</label>
+                    <input type="text" class="form-control" name="school[]" required>
+                    <label for="degree">Degree:</label>
+                    <input type="text" class="form-control" name="degree[]" required>
+                    <label for="start_date">Start Date:</label>
+                    <input type="date" class="form-control" name="start_date[]" required>
+                    <label for="end_date">End Date:</label>
+                    <input type="date" class="form-control" name="end_date[]" required>
+                    <button type="button" class="btn btn-danger mt-2 remove-education">Remove</button>
+                </div>
+            `);
+        });
+
+        $(document).on('click', '.remove-education', function() {
+            $(this).closest('.education-entry').remove();
+        });
+    });
+</script>
+{% endblock %}
